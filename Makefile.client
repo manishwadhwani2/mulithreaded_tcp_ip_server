@@ -1,0 +1,18 @@
+CC		= g++ -std=c++20
+CFLAGS		= -g -c -Wall
+LDFLAGS		= 
+SOURCES		= client.cpp Tcp_stream.cpp Tcp_connector.cpp
+INCLUDES	= -I. 
+OBJECTS		= $(SOURCES:.cpp=.o)
+TARGET		= client
+
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJECTS) 
+	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
+
+.cpp.o:
+	$(CC) $(CFLAGS) $(INCLUDES) $< -o $@
+
+clean:
+	rm -rf $(OBJECTS) $(TARGET)
